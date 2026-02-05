@@ -6,33 +6,58 @@
 
 <style>
 body{
- background:#1a0010;
- color:white;
- font-family:sans-serif;
- text-align:center;
- margin-top:100px;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    background: #1a0010;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    height: auto;
+    padding:50px;
+    background:#33001a;
+    border-radius:20px;
+}
+
+.button-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top:30px;
+    height:100px;
 }
 
 button{
- padding:15px 30px;
- font-size:18px;
- border:none;
- border-radius:12px;
- cursor:pointer;
- margin:20px;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
 }
 
 .yes{ background:#ff4d6d; }
-.no{ background:#666; position:absolute; }
+.no{ background:#666; }
 </style>
 </head>
 
 <body>
-
-<h1>Будешь моим валентином? ❤️</h1>
-
-<button class="yes" onclick="yes()">Да 😏</button>
-<button class="no" id="noBtn">Нет 🙃</button>
+<main>
+    <h1>Будешь моим валентином? <br>❤️</h1>
+    
+    <div class="button-block">
+        <button class="yes" onclick="yes()">Да 😏</button>
+        <button class="no" id="noBtn">Нет 🙃</button>
+    </div>
+</main>
 
 <script>
 function yes(){
@@ -40,15 +65,27 @@ function yes(){
  "<h1>Я так и думал ❤️</h1>";
 }
 
-const btn=document.getElementById("noBtn");
+const btn = document.getElementById("noBtn");
+let activated = false;
 
-function run(){
- btn.style.left=Math.random()*80+"vw";
- btn.style.top=Math.random()*80+"vh";
+function run() {
+    if (!activated) {
+        activated = true;
+
+        // фиксируем текущее положение
+        const rect = btn.getBoundingClientRect();
+        btn.style.position = "absolute";
+        btn.style.left = rect.left + "px";
+        btn.style.top = rect.top + "px";
+    }
+
+    // убегаем
+    btn.style.left = Math.random() * 80 + "vw";
+    btn.style.top = Math.random() * 80 + "vh";
 }
 
-btn.addEventListener("mouseover",run);
-btn.addEventListener("touchstart",run);
+btn.addEventListener("mouseover", run);
+btn.addEventListener("touchstart", run);
 </script>
 
 </body>
