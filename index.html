@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>❤️</title>
+
+<style>
+body{
+ background:#1a0010;
+ color:white;
+ font-family:sans-serif;
+ text-align:center;
+ margin-top:100px;
+}
+
+button{
+ padding:15px 30px;
+ font-size:18px;
+ border:none;
+ border-radius:12px;
+ cursor:pointer;
+ margin:20px;
+}
+
+.yes{ background:#ff4d6d; }
+.no{ background:#666; position:absolute; }
+</style>
+</head>
+
+<body>
+
+<h1>Будешь моим валентином? ❤️</h1>
+
+<button class="yes" onclick="yes()">Да 😏</button>
+<button class="no" id="noBtn">Нет 🙃</button>
+
+<script>
+function yes(){
+ document.body.innerHTML =
+ "<h1>Я так и думал ❤️</h1>";
+}
+
+const btn=document.getElementById("noBtn");
+
+function run(){
+ btn.style.left=Math.random()*80+"vw";
+ btn.style.top=Math.random()*80+"vh";
+}
+
+btn.addEventListener("mouseover",run);
+btn.addEventListener("touchstart",run);
+</script>
+
+</body>
+</html>
